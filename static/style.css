@@ -1,6 +1,11 @@
-h1 {
+h1, h2 {
     text-decoration: underline;
     text-align: center;
+    color: blue;
+}
+
+h2 {
+    color: brown;
 }
 
 form {
@@ -44,4 +49,5 @@ button {
 .feedback {
     text-align: center;
     font-size: xx-large;
+    color: red;
 }
