@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session
+from flask import Flask, request, render_template, session
 import random
 
 app = Flask(__name__)
