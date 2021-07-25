@@ -12,11 +12,12 @@ def index():
         low_value = 1
         high_value = 50
         magic_number = random.randint(low_value, high_value)
+        still_guessing = True
 
         message = ''
 
     return render_template('index.html', message = message,
-        low_value = low_value, high_value = high_value)
+        low_value = low_value, high_value = high_value, still_guessing = still_guessing)
 
 if __name__ == '__main__':
     app.run()
