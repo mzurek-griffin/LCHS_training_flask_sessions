@@ -5,36 +5,26 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.secret_key = 'SIH*v-6u)c>q<;;h&);cRw,1E_CO8>'
 
+def id_winner(computer, user):
+  if (computer == 'rock' and user == 'scissors') or (computer == 'scissors' and user == 'paper') or (computer == 'paper' and user == 'rock'):
+    return 'computer'
+  elif (computer == 'paper' and user == 'scissors') or (computer == 'rock' and user == 'paper') or (computer == 'scissors' and user == 'rock'):
+    return 'user'
+  else:
+    return 'tie'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        guess = int(request.form['guess'])
-        low_value = session['low']
-        high_value = session['high']
-        session['turns_taken'] += 1
-        still_guessing = True
-        if guess < session['magic_number']:
-            message = f'Your guess ({guess}) is too low.'
-            low_value = guess + 1
-        elif guess > session['magic_number']:
-            message = f'Your guess ({guess}) is too high.'
-            high_value = guess - 1
-        else:
-            message = f"VICTORY! You took {session['turns_taken']} tries to guess the magic number."
-            still_guessing = False
+        pass
     else:
-        low_value = 1
-        high_value = 50
-        session['magic_number'] = random.randint(low_value, high_value)
-        still_guessing = True
+        options = ['rock', 'paper', 'scissors']
+        comp_wins = 0
+        user_wins = 0
+        computer_choice = random.choice(options)
         message = ''
-        session['turns_taken'] = 0
 
-    session['low'] = low_value
-    session['high'] = high_value
-
-    return render_template('index.html', message = message,
-        low_value = low_value, high_value = high_value, still_guessing = still_guessing)
+    return render_template('index.html', message = message)
 
 if __name__ == '__main__':
     app.run()
